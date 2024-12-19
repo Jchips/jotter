@@ -2,26 +2,25 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Button, HStack } from '@chakra-ui/react';
 import { Alert } from '@/components/ui/alert';
+import CodeMirror from '@uiw/react-codemirror';
+import { markdown as md } from '@codemirror/lang-markdown';
 import { useMarkdown } from '../../hooks/useMarkdown';
 import { useAuth } from '@/hooks/useAuth';
-import api from '@/util/api';
 import Preview from './Preview';
+import Loading from '../Loading';
+import api from '@/util/api';
 import './Note.scss';
 import '../../assets/markdown.scss';
-import Loading from '../Loading';
 
 const Editor = () => {
   const [note, setNote] = useState();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
   const { markdown, setMarkdown } = useMarkdown();
   const { logout } = useAuth();
   const { noteId } = useParams();
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   setNote(markdown);
-  // }, [markdown]);
 
   useEffect(() => {
     const getNote = async () => {
@@ -29,7 +28,6 @@ const Editor = () => {
       try {
         setError('');
         let note = await api.getNote(noteId);
-        console.log('note:', note.data); // delete later
         setNote(note.data);
         setMarkdown(note.data.content);
       } catch (err) {
@@ -47,16 +45,14 @@ const Editor = () => {
     setLoading(false);
   }, [noteId, setMarkdown, logout, navigate]);
 
-  const update = (e) => {
-    const value = e.target.value;
+  const update = (value) => {
     setMarkdown(value);
   };
 
   const handleSave = async () => {
-    console.log(markdown); // delete later
     try {
       setError('');
-      setLoading(true);
+      setSaving(true);
       let res = await api.updateNote(
         {
           content: markdown,
@@ -69,7 +65,7 @@ const Editor = () => {
       setError('Failed to save note');
       console.error(err);
     }
-    setLoading(false);
+    setSaving(false);
   };
 
   const handleSaveAndExit = () => {
@@ -91,11 +87,12 @@ const Editor = () => {
       {!loading && (
         <div className='note-body'>
           <div className='editor__wrap'>
-            <textarea
+            <CodeMirror
               value={markdown}
               className='editor'
-              onChange={update}
+              extensions={[md()]}
               placeholder='Type Markdown here...'
+              onChange={update}
             />
           </div>
           <Preview markdown={markdown} />
@@ -104,17 +101,17 @@ const Editor = () => {
       <div className='footer'>
         <HStack>
           <Button
-            className='save-btn'
+            className='button1'
             variant='solid'
             onClick={handleSaveAndExit}
           >
             Save and exit
           </Button>
           <Button
-            className='save-btn'
+            className='button1'
             variant='solid'
             onClick={handleSave}
-            disabled={loading}
+            disabled={saving}
           >
             Save changes
           </Button>

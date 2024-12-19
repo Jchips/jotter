@@ -10,7 +10,9 @@ Users can log in to accounts and write notes with markdown.
 
 ## Architecture
 
-- React + Vite, Sass. The backend uses MySQL, Sequelize, Nodejs, jwt, Bcrypt, and base-64.
+- Built with React + Vite.
+- Languages used: JavaScript and Sass.
+- Backend uses MySQL, Sequelize, Nodejs, jwt, Bcrypt, and base-64.
 
 ## Resources
 
@@ -20,6 +22,7 @@ Users can log in to accounts and write notes with markdown.
 - [remark-gfm](https://github.com/remarkjs/remark-gfm)
 - [React Hook Form](https://react-hook-form.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
+- [react-codemirror](https://uiwjs.github.io/react-codemirror/)
 - [Chakra](https://www.chakra-ui.com/docs/get-started/installation)
 - [Chakra templates](https://chakra-templates.vercel.app/navigation/navbar)
 

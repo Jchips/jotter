@@ -5,12 +5,23 @@
   height: 100vh;
 }
 
+.ͼ1.cm-focused {
+  outline: none;
+}
+
+// Hide gutters
+.cm-gutters,
+.cm-gutter {
+  display: none !important;
+}
+
 .editor__wrap,
 .preview {
   display: flex;
   flex-direction: column;
   height: 100%;
   flex: 1;
+  margin: 20px;
   // padding: 1.875rem;
 }
 
@@ -43,20 +54,33 @@
   transition: box-shadow 0.2s, background-color 0.2s;
 
   justify-content: flex-end;
+}
 
-  .save-btn {
-    color: colors.$themeWhite;
-    background-color: colors.$themePurple;
-    margin-left: 10px;
+/* CodeMirror background will match the page background */
+.CodeMirror {
+  background-color: var(--editor-background-color) !important;
+  color: var(--editor-text-color) !important;
+  border: none !important;
+  font-family: inherit;
+}
+
+.ͼ15,
+.ͼ2 .cm-activeLine {
+  background-color: var(--editor-background-color) !important;
+  color: var(--editor-text-color) !important;
+}
+
+/* Applies light/dark background dynamically */
+@media (prefers-color-scheme: light) {
+  :root {
+    --editor-background-color: #ffffff;
+    --editor-text-color: #213547;
   }
 }
 
-
-// .preview {
-//   width: '50%';
-//   height: '90vh';
-//   padding: '10px';
-//   border: '1px solid #ccc';
-//   overflow-y: 'auto';
-//   background-color: '#f9f9f9';
-// }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --editor-background-color: #242424;
+    --editor-text-color: rgba(255, 255, 255, 0.87);
+  }
+}

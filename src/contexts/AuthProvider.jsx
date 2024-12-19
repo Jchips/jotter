@@ -2,7 +2,6 @@ import { useState, createContext, useEffect } from 'react';
 import axios from 'axios';
 import { Buffer } from 'buffer';
 import { getToken, setToken, clearToken } from '@/util/authUtil';
-import { jwtDecode } from 'jwt-decode';
 import { AuthContext } from './AuthContext';
 import logInUser from '@/util/logInUser';
 import api from '@/util/api';

@@ -1,4 +1,8 @@
+@use 'sass:color';
 @use 'colors';
+
+
+// $darken-themePurple: color.adjust()
 
 // theme purple button
 .button1 {
@@ -7,8 +11,16 @@
   margin-left: 10px;
 
   &:hover {
-    background-color: adjust-color($color: colors.$themePurple, $lightness: -10%);
-    // background-color: color.scale(colors.$themePurple, -16.2420382166%);
-    // background-color: darken($color: colors.$themePurple, $amount: 10);
+    background-color: color.adjust(colors.$themePurple, $lightness: -10%);
+  }
+}
+
+.button2 {
+  color: #000;
+  background-color: colors.$themeWhite;
+  margin-left: 10px;
+
+  &:hover {
+    background-color: color.adjust(colors.$themeWhite, $lightness: -10%);
   }
 }

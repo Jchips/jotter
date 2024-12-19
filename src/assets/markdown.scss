@@ -1,6 +1,4 @@
 .markdown-wrapper {
-  // white-space: pre-wrap;
-
   h1 {
     font-weight: 700;
     font-size: 2rem;
@@ -50,6 +48,10 @@
     list-style-type: disc;
   }
 
+  ol {
+    list-style-type: decimal;
+  }
+
   ol,
   ul {
     margin-left: 1.5em;
@@ -65,5 +67,32 @@
   ol {
     font-size: 1rem;
     line-height: 1.5;
+  }
+
+  table {
+    border-spacing: 0 !important;
+    border-collapse: collapse !important;
+    border-color: inherit !important;
+    display: block !important;
+    margin: 20px auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: auto !important;
+  }
+
+  tbody,
+  td,
+  tfoot,
+  th,
+  thead,
+  tr {
+    border-color: inherit !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+    padding: 0.7rem;
+  }
+
+  thead {
+    font-weight: 700;
   }
 }

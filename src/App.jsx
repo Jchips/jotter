@@ -37,7 +37,6 @@ function App() {
             <Route
               exact
               path='/editor/:noteId'
-              // path='/editor'
               element={
                 <PrivateRoute>
                   <Editor />
